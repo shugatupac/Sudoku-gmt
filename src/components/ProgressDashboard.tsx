@@ -27,6 +27,8 @@ interface ProgressDashboardProps {
   }[];
   nextChallengeLevel?: string;
   nextChallengeDifficulty?: number;
+  onBackToMenu?: () => void;
+  onStartChallenge?: () => void;
 }
 
 const ProgressDashboard = ({
@@ -66,6 +68,8 @@ const ProgressDashboard = ({
   ],
   nextChallengeLevel = "Advanced",
   nextChallengeDifficulty = 4.5,
+  onBackToMenu = () => {},
+  onStartChallenge = () => {},
 }: ProgressDashboardProps) => {
   return (
     <div className="w-full h-full min-h-screen bg-gray-50 p-6">
@@ -80,7 +84,7 @@ const ProgressDashboard = ({
               Track your Sudoku journey and skill development
             </p>
           </div>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={onBackToMenu}>
             Back to Menu
             <ChevronRight size={16} />
           </Button>
@@ -217,7 +221,10 @@ const ProgressDashboard = ({
                   {nextChallengeDifficulty}/10)
                 </p>
               </div>
-              <Button className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button
+                className="bg-white text-blue-600 hover:bg-blue-50"
+                onClick={onStartChallenge}
+              >
                 Start Challenge <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

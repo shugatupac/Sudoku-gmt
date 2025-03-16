@@ -74,11 +74,25 @@ const Home = () => {
           </div>
         );
       case "progress":
-        return <ProgressDashboard playerName={userData.name} />;
+        return (
+          <ProgressDashboard
+            playerName={userData.name}
+            onBackToMenu={navigateToMenu}
+            onStartChallenge={navigateToGame}
+          />
+        );
       case "library":
-        return <TechniqueLibrary />;
+        return <TechniqueLibrary onBackToMenu={navigateToMenu} />;
       case "settings":
-        return <SettingsPanel onLogout={navigateToMenu} />;
+        return (
+          <SettingsPanel
+            onLogout={navigateToMenu}
+            onSave={() => {
+              // In a real app, this would save settings to local storage or a database
+              navigateToMenu();
+            }}
+          />
+        );
       case "menu":
       default:
         return (

@@ -34,7 +34,13 @@ interface TechniqueProps {
   }>;
 }
 
-const TechniqueLibrary = () => {
+interface TechniqueLibraryProps {
+  onBackToMenu?: () => void;
+}
+
+const TechniqueLibrary = ({
+  onBackToMenu = () => {},
+}: TechniqueLibraryProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -129,12 +135,18 @@ const TechniqueLibrary = () => {
   return (
     <div className="container mx-auto p-6 bg-white min-h-screen">
       <div className="flex flex-col space-y-6">
-        <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold">Sudoku Technique Library</h1>
-          <p className="text-gray-600">
-            Learn and master various Sudoku solving techniques to improve your
-            skills
-          </p>
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col space-y-2">
+            <h1 className="text-3xl font-bold">Sudoku Technique Library</h1>
+            <p className="text-gray-600">
+              Learn and master various Sudoku solving techniques to improve your
+              skills
+            </p>
+          </div>
+          <Button variant="outline" className="gap-2" onClick={onBackToMenu}>
+            Back to Menu
+            <ChevronRight size={16} />
+          </Button>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4">
@@ -191,6 +203,7 @@ const TechniqueLibrary = () => {
                         variant="outline"
                         size="sm"
                         className="flex items-center gap-1"
+                        onClick={() => {}}
                       >
                         <BookOpen size={16} />
                         <span>Learn</span>
@@ -199,6 +212,7 @@ const TechniqueLibrary = () => {
                         variant="outline"
                         size="sm"
                         className="flex items-center gap-1"
+                        onClick={() => {}}
                       >
                         <Play size={16} />
                         <span>Watch</span>
@@ -208,6 +222,7 @@ const TechniqueLibrary = () => {
                       variant="ghost"
                       size="sm"
                       className="flex items-center gap-1"
+                      onClick={() => {}}
                     >
                       <span>Practice</span>
                       <ArrowRight size={16} />
